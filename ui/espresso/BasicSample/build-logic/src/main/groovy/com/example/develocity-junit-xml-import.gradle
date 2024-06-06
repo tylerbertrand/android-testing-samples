@@ -1,0 +1,13 @@
+import com.android.build.gradle.internal.tasks.DeviceProviderInstrumentTestTask
+import static com.gradle.enterprise.gradleplugin.test.JUnitXmlDialect.*
+import com.gradle.enterprise.gradleplugin.test.ImportJUnitXmlReports
+
+afterEvaluate {
+    tasks.withType(DeviceProviderInstrumentTestTask).names.each {
+        ImportJUnitXmlReports.register(
+                tasks,
+                tasks.named(it),
+                ANDROID_CONNECTED
+        )
+    }
+}

@@ -1,0 +1,14 @@
+plugins {
+    id "groovy-gradle-plugin"
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+    google()
+}
+
+dependencies {
+    implementation "com.gradle.enterprise:com.gradle.enterprise.gradle.plugin:3.14.1"
+    implementation "com.android.tools.build:gradle:8.4.0"
+}
