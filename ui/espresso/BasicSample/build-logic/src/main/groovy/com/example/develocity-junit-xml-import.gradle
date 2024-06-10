@@ -4,10 +4,13 @@ import com.gradle.enterprise.gradleplugin.test.ImportJUnitXmlReports
 
 afterEvaluate {
     tasks.withType(DeviceProviderInstrumentTestTask).names.each {
-        ImportJUnitXmlReports.register(
+        def importFinalizerTask = ImportJUnitXmlReports.register(
                 tasks,
                 tasks.named(it),
-                ANDROID_CONNECTED
+                GENERIC
         )
+        importFinalizerTask.configure {
+            reports.setFrom(project.layout.buildDirectory.dir("reports/marathon").map { it.asFileTree })
+        }
     }
 }
